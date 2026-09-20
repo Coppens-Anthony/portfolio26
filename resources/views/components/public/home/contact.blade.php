@@ -21,10 +21,10 @@
                     Email
                 </x-global.form.input>
             </div>
-            <x-global.form.input name="name" placeholder="Prise de contact">
+            <x-global.form.input name="subject" placeholder="Prise de contact">
                 Sujet
             </x-global.form.input>
-            <x-global.form.textarea name="name" placeholder="Je vous contacte afin de...">
+            <x-global.form.textarea name="message" placeholder="Je vous contacte afin de...">
                 Message
             </x-global.form.textarea>
             <p><span class="text-error">*</span> champs obligatoires</p>
