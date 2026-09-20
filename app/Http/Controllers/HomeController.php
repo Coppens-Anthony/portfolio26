@@ -19,7 +19,11 @@ class HomeController extends Controller
         $professionals = Experience::where('status', ExperiencesEnum::PROFESSIONAL)->get();
         $scholars = Experience::where('status', ExperiencesEnum::SCHOLAR)->get();
 
-        $projects = Project::latest()->limit(2)->get();
+        $projects = Project::with('competences')->latest()->limit(2)->get();
+
+        $projects->each(function (Project $project) {
+            $project->setRelation('competences', $project->competences->take(3));
+        });
 
         return view('pages.public.home', compact('front_competencies', 'back_competencies', 'tool_competencies', 'projects', 'professionals', 'scholars'));
     }

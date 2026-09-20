@@ -1,5 +1,5 @@
-<section class="max-w-7xl mx-6 md:mx-16" id="contact">
-    <x-public.home.section_title>Une question, un projet ?</x-public.home.section_title>
+<section class="max-w-7xl mx-6 md:mx-16 2xl:mx-auto" id="contact">
+    <x-public.home.section_title>Une question, un projet&nbsp;?</x-public.home.section_title>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div>
             <div class="flex flex-col gap-1 w-fit mb-4">

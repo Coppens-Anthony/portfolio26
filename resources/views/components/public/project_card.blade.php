@@ -1,14 +1,13 @@
 @props(['project'])
+
 <li class="relative group">
-    <a href="" class="absolute inset-0 w-full h-full z-10"></a>
+    <a href="{{ route('project.show', $project) }}" class="absolute inset-0 w-full h-full z-10"></a>
     <article
         class="h-full rounded-2xl border-black border overflow-hidden flex flex-col transition-all duration-200 group-hover:-translate-y-1 group-hover:shadow-lg">
 
         <div class="overflow-hidden">
-            <img
-                src="{{ asset('assets/img/test.png') }}"
-                alt=""
-                class="w-full transition-transform duration-200 group-hover:scale-105">
+            <img src="{{ asset('assets/img/mockup_cv.jpg') }}" alt=""
+                 class="w-full transition-transform duration-200 group-hover:scale-105">
         </div>
 
         <div class="p-8 flex flex-col gap-6 flex-1">
@@ -22,9 +21,9 @@
             </p>
 
             <ul class="flex gap-2">
-                <li class="py-2 px-4 bg-secondary rounded-lg">Laravel</li>
-                <li class="py-2 px-4 bg-secondary rounded-lg">Laravel</li>
-                <li class="py-2 px-4 bg-secondary rounded-lg">Laravel</li>
+                @foreach ($project->competences as $competence)
+                    <li class="py-2 px-4 bg-secondary rounded-lg">{{ $competence->name }}</li>
+                @endforeach
             </ul>
 
             <p class="mt-auto inline-flex items-center gap-1.5 w-fit group-hover:text-primary">

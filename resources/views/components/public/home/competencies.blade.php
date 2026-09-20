@@ -1,6 +1,6 @@
 @props(['front_competencies', 'back_competencies', 'tool_competencies'])
 
-<section class="max-w-7xl mx-6 md:mx-16" id="competences">
+<section class="max-w-7xl mx-6 md:mx-16 2xl:mx-auto" id="competences">
     <x-public.home.section_title>Mes compétences</x-public.home.section_title>
 
     <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-12">

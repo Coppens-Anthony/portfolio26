@@ -1,5 +1,5 @@
-<footer class="bg-secondary px-6 pt-12 lg:px-16 lg:pt-16 mt-16 lg:mt-32">
-    <div class="flex flex-col gap-10 lg:flex-row lg:justify-between">
+<footer class="bg-secondary px-6 pt-12 lg:p-16 mt-16 lg:mt-32">
+    <div class="flex flex-col gap-10 lg:flex-row lg:justify-between max-w-7xl mx-6 md:mx-16 2xl:mx-auto">
         <div class="relative w-fit z-100">
             <a href="{{ route('home') }}" aria-label="Accueil" class="absolute inset-0 w-full h-full"></a>
             <img src="{{ asset('assets/svg/logo.svg') }}" alt="">
@@ -94,7 +94,7 @@
             </section>
         </div>
     </div>
-    <section class="flex flex-col gap-2 py-8 border-t border-black mt-8 sm:flex-row sm:justify-between">
+    <section class="flex flex-col gap-2 py-8 border-t border-black mt-8 sm:flex-row sm:justify-between max-w-7xl mx-6 md:mx-16 2xl:mx-auto">
         <h2 class="sr-only">Mentions légales</h2>
         <p>© 2026 Anthony Coppens. Tous droits réservés.</p>
         <x-global.link route="">Mentions légales</x-global.link>

@@ -54,6 +54,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Github', 'category' => CategoriesEnum::TOOL],
             ['name' => 'TablePlus', 'category' => CategoriesEnum::TOOL],
             ['name' => 'Laravel Cloud', 'category' => CategoriesEnum::TOOL],
+            ['name' => 'Wordpress', 'category' => CategoriesEnum::TOOL],
         ];
 
         foreach ($competencies as $competence) {
@@ -82,11 +83,11 @@ class DatabaseSeeder extends Seeder
         }
 
         $projects = [
-            ['name' => 'Joana-Coiffure', 'year' => 2026, 'description' => 'Projet de fin d’études pour un salon de coiffure fictif. Système de prise de rendez-vous intégré ainsi qu’une gestion interne pour les membres du salon.', 'about' => 'Projet de fin d’études pour un salon de coiffure fictif. Système de prise de rendez-vous intégré ainsi qu’une gestion interne pour les membres du salon.', 'client' => 'Joana-Coiffure', 'client_about' => 'Salon de coiffure fictif', 'github' => 'https://github.com/Coppens-Anthony/Joana-coiffure', 'link' => null, 'start_at' => 10 - 05 - 2026, 'end_at' => 30 - 11 - 2026],
-            ['name' => 'Fidelo Sales', 'year' => 2026, 'description' => 'Projet réalisé lors de mon stage chez Fidelo Agency. C’est une application web qui sert à gérer les devis et factures pour ses clients. Les devis sont ajustables pour le client qui peut sélectionner ou non des options.', 'about' => 'Projet réalisé lors de mon stage chez Fidelo Agency. C’est une application web qui sert à gérer les devis et factures pour ses clients. Les devis sont ajustables pour le client qui peut sélectionner ou non des options.', 'client' => 'Fidelo Agency', 'client_about' => 'Outil destiné à l\'agence', 'github' => null, 'link' => null, 'start_at' => 10 - 02 - 2026, 'end_at' => 30 - 04 - 2026],
-            ['name' => 'Les pattes heureuses', 'year' => 2025, 'description' => 'Projet réalisé lors de mon stage chez Fidelo Agency. C’est une application web qui sert à gérer les devis et factures pour ses clients. Les devis sont ajustables pour le client qui peut sélectionner ou non des options.', 'about' => 'Projet réalisé lors de mon stage chez Fidelo Agency. C’est une application web qui sert à gérer les devis et factures pour ses clients. Les devis sont ajustables pour le client qui peut sélectionner ou non des options.', 'client' => 'Les pattes heureuses', 'client_about' => 'Refuge animalier fictif', 'github' => 'https://github.com/Coppens-Anthony/refuge-animalier', 'link' => null, 'start_at' => 10 - 11 - 2025, 'end_at' => 02 - 01 - 2026],
-            ['name' => 'Le Vieux Moulin', 'year' => 2025, 'description' => 'Projet réalisé lors de mon stage chez Fidelo Agency. C’est une application web qui sert à gérer les devis et factures pour ses clients. Les devis sont ajustables pour le client qui peut sélectionner ou non des options.', 'about' => 'Projet réalisé lors de mon stage chez Fidelo Agency. C’est une application web qui sert à gérer les devis et factures pour ses clients. Les devis sont ajustables pour le client qui peut sélectionner ou non des options.', 'client' => 'Le Vieux Moulin', 'client_about' => 'ASBL', 'github' => 'https://github.com/Coppens-Anthony/Le_vieux_moulin', 'link' => null, 'start_at' => 28 - 04 - 2025, 'end_at' => 13 - 06 - 2025],
-            ['name' => 'curriculum vitae', 'year' => 2025, 'description' => 'Projet réalisé lors de mon stage chez Fidelo Agency. C’est une application web qui sert à gérer les devis et factures pour ses clients. Les devis sont ajustables pour le client qui peut sélectionner ou non des options.', 'about' => 'Projet réalisé lors de mon stage chez Fidelo Agency. C’est une application web qui sert à gérer les devis et factures pour ses clients. Les devis sont ajustables pour le client qui peut sélectionner ou non des options.', 'client' => 'Anthony Coppens', 'client_about' => 'CV personnel', 'github' => 'https://github.com/Coppens-Anthony/CV', 'link' => null, 'start_at' => 14 - 11 - 2024, 'end_at' => 22 - 01 - 2025],
+            ['name' => 'Joana-Coiffure', 'year' => 2026, 'description' => 'Projet de fin d’études pour un salon de coiffure fictif. Système de prise de rendez-vous intégré ainsi qu’une gestion interne pour les membres du salon.', 'about' => 'Projet de fin d’études pour un salon de coiffure fictif. Système de prise de rendez-vous intégré ainsi qu’une gestion interne pour les membres du salon.', 'client' => 'Joana-Coiffure', 'client_about' => 'Salon de coiffure fictif', 'github' => 'https://github.com/Coppens-Anthony/Joana-coiffure', 'link' => null, 'start_at' => '10-04-2026', 'end_at' => '30-07-2026'],
+            ['name' => 'Fidelo Sales', 'year' => 2026, 'description' => 'Projet réalisé lors de mon stage chez Fidelo Agency. C’est une application web qui sert à gérer les devis et factures pour ses clients. Les devis sont ajustables pour le client qui peut sélectionner ou non des options.', 'about' => 'Projet réalisé lors de mon stage chez Fidelo Agency. C’est une application web qui sert à gérer les devis et factures pour ses clients. Les devis sont ajustables pour le client qui peut sélectionner ou non des options.', 'client' => 'Fidelo Agency', 'client_about' => 'Outil destiné à l\'agence', 'github' => null, 'link' => null, 'start_at' => '10-02-2026', 'end_at' => '30-04-2026'],
+            ['name' => 'Les pattes heureuses', 'year' => 2025, 'description' => 'Projet réalisé lors de mon stage chez Fidelo Agency. C’est une application web qui sert à gérer les devis et factures pour ses clients. Les devis sont ajustables pour le client qui peut sélectionner ou non des options.', 'about' => 'Projet réalisé lors de mon stage chez Fidelo Agency. C’est une application web qui sert à gérer les devis et factures pour ses clients. Les devis sont ajustables pour le client qui peut sélectionner ou non des options.', 'client' => 'Les pattes heureuses', 'client_about' => 'Refuge animalier fictif', 'github' => 'https://github.com/Coppens-Anthony/refuge-animalier', 'link' => null, 'start_at' => '10-11-2025', 'end_at' => '02-01-2026'],
+            ['name' => 'Le Vieux Moulin', 'year' => 2025, 'description' => 'Projet réalisé lors de mon stage chez Fidelo Agency. C’est une application web qui sert à gérer les devis et factures pour ses clients. Les devis sont ajustables pour le client qui peut sélectionner ou non des options.', 'about' => 'Projet réalisé lors de mon stage chez Fidelo Agency. C’est une application web qui sert à gérer les devis et factures pour ses clients. Les devis sont ajustables pour le client qui peut sélectionner ou non des options.', 'client' => 'Le Vieux Moulin', 'client_about' => 'ASBL', 'github' => 'https://github.com/Coppens-Anthony/Le_vieux_moulin', 'link' => null, 'start_at' => '28-04-2025', 'end_at' => '13-06-2025'],
+            ['name' => 'curriculum vitae', 'year' => 2025, 'description' => 'Projet réalisé lors de mon stage chez Fidelo Agency. C’est une application web qui sert à gérer les devis et factures pour ses clients. Les devis sont ajustables pour le client qui peut sélectionner ou non des options.', 'about' => 'Projet réalisé lors de mon stage chez Fidelo Agency. C’est une application web qui sert à gérer les devis et factures pour ses clients. Les devis sont ajustables pour le client qui peut sélectionner ou non des options.', 'client' => 'Anthony Coppens', 'client_about' => 'CV personnel', 'github' => 'https://github.com/Coppens-Anthony/CV', 'link' => null, 'start_at' => '14-11-2024', 'end_at' => '22-01-2025'],
         ];
 
         foreach ($projects as $project) {
@@ -103,5 +104,18 @@ class DatabaseSeeder extends Seeder
                 'end_at' => $project['end_at'],
             ]);
         }
+
+        $projectCompetences = [
+            1 => [1, 3, 5, 8, 9, 10, 11, 12, 14, 15, 19, 21, 22, 24],
+            2 => [1, 2, 3, 5, 10, 11, 13, 15, 16, 20, 21, 22],
+            3 => [1, 3, 5, 8, 9, 10, 11, 12, 14, 15, 19, 21, 22, 24],
+            4 => [1, 2, 3, 10, 15, 17, 19, 21, 22, 25],
+            5 => [1, 2, 3, 15, 17, 18, 19, 22],
+        ];
+
+        foreach ($projectCompetences as $projectId => $competenceIds) {
+            Project::find($projectId)->competences()->attach($competenceIds);
+        }
+
     }
 }

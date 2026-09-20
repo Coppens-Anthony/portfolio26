@@ -1,5 +1,5 @@
 <div class="bg-secondary">
-    <section class="w-full px-6 md:w-fit mx-auto h-[calc(100vh-72px)] md:h-[calc(100vh-112px)] flex items-center">
+    <section class="w-full px-6 flex items-center md:w-fit mx-auto h-[calc(100vh-72px)] md:h-[calc(100vh-112px)] 2xl:h-fit 2xl:py-32">
         <div class="flex flex-col gap-6 md:gap-8 items-center mx-auto">
             <h2 class="text-[2rem] sm:text-[2.75rem] md:text-[4rem] font-bold text-center max-w-155">Développeur <span class="text-primary">Web</span>, UX/UI
                 Designer</h2>

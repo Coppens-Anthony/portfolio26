@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Project extends Model
 {
@@ -21,6 +22,11 @@ class Project extends Model
         'start_at',
         'end_at',
     ];
+
+    public function competences(): BelongsToMany
+    {
+        return $this->belongsToMany(Competence::class, 'project_competence', 'project_id', 'competence_id');
+    }
 
     protected function casts(): array
     {

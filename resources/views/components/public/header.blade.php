@@ -1,6 +1,6 @@
 <header class="relative z-50 {{ request()->routeIs('home') ? 'bg-secondary' : '' }} "
     x-data="{ open: false }" x-effect="document.body.classList.toggle('overflow-hidden', open)">
-    <div class="flex justify-between items-center py-8 px-6 md:px-16 max-w-7xl mx-auto">
+    <div class="flex justify-between items-center py-8 px-6 md:px-16 max-w-7xl mx-auto 2xl:px-0">
 
         <div class="relative w-fit z-100">
             <a href="{{ route('home') }}" aria-label="Accueil" class="absolute inset-0 w-full h-full"></a>

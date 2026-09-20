@@ -1,8 +1,8 @@
-@props(['projects'])
+@props(['projects', 'isSingle' => false])
 
-<section class="max-w-7xl mx-6 md:mx-16">
+<section class="{{ $isSingle ? '' : 'max-w-7xl mx-6 md:mx-16 2xl:mx-auto' }}">
     <div class="flex flex-col w-fit md:w-full gap-4 md:gap-0 md:flex-row md:justify-between md:items-center mb-16">
-        <x-public.home.section_title class="mb-0!">Mes projets</x-public.home.section_title>
+        <x-public.home.section_title class="mb-0!">Mes {{ $isSingle ? 'autres' : '' }} projets</x-public.home.section_title>
 
         <x-global.link :route="route('projects')" :arrow="true">
             Voir tous mes projets

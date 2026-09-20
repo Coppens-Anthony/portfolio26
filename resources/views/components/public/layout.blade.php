@@ -8,7 +8,7 @@
           content="Développement, web, design, portfolio, cv, agence, freelance, infographie, hepl, hannut, orp-jauche">
     <meta name="description" content="Portfolio de développeur web">
     <link rel="icon" href="{{ asset('assets/svg/logo.svg') }}">
-    <title>{{ config('app.name', 'Portfolio - Anthony Coppens') }}</title>
+    <title>{{ $title }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -22,6 +22,7 @@
 <x-public.header/>
 <main>
     {{ $slot }}
+    <x-global.arrow_up/>
 </main>
 <x-public.footer/>
 </body>

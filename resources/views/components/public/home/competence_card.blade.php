@@ -1,4 +1,4 @@
-@props(['asset', 'competencies' => []])
+@props(['asset', 'competencies'])
 
 <article class="bg-secondary rounded-2xl p-8">
     <div class="flex gap-4 mb-6 items-center">
