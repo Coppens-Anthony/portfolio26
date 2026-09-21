@@ -53,7 +53,7 @@ new class extends Component {
 ?>
 
 <livewire:admin.modal :modal_title="$this->model_id ? 'Modifier la compétence' : 'Ajouter un compétence'">
-    <form wire:click.stop wire:submit="{{ $this->model_id ? 'update' : 'store' }}" class="flex flex-col gap-4">
+    <form wire:submit="{{ $this->model_id ? 'update' : 'store' }}" class="flex flex-col gap-4">
         @csrf
         <x-global.form.input name="name" wire:model="name" placeholder="HTML">
             Nom

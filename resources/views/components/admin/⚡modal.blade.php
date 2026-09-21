@@ -13,7 +13,6 @@ new class extends Component
     @keydown.escape.window="$wire.dispatch('close_modal')"
     class="fixed inset-0 z-50 bg-black/50">
     <div
-        wire:click.stop
         x-trap.inert.noscroll="true"
         role="dialog"
         aria-modal="true"
