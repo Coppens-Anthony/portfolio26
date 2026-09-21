@@ -13,6 +13,7 @@
             </div>
         </div>
         <form action="" class="flex flex-col gap-6">
+            @csrf
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <x-global.form.input name="name" placeholder="John Doe">
                     Nom
@@ -28,9 +29,7 @@
                 Message
             </x-global.form.textarea>
             <p><span class="text-error">*</span> champs obligatoires</p>
-            <div class="w-fit mx-auto">
-                <x-global.form.button>Envoyer votre message</x-global.form.button>
-            </div>
+            <x-global.form.button>Envoyer votre message</x-global.form.button>
         </form>
     </div>
 </section>
