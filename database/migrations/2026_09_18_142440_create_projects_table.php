@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->string('name');
             $table->integer('year');
             $table->string('description');
-            $table->string('about');
+            $table->text('about');
             $table->date('start_at');
             $table->date('end_at')->nullable();
             $table->string('client');

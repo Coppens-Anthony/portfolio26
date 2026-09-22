@@ -1,7 +1,9 @@
-@props(['project', 'duration'])
+@props(['project', 'duration', 'isAdmin' => false])
 
 <section class="mt-8 max-w-7xl mx-6 md:mx-16 2xl:mx-auto">
-    <x-global.link :route="route('projects')" :backArrow="true">Retour aux projets</x-global.link>
+    @if(!$isAdmin)
+        <x-global.link :route="route('projects')" :backArrow="true">Retour aux projets</x-global.link>
+    @endif
     <div class="mx-auto w-fit my-16">
         <h2 class="text-[2rem] sm:text-[2.75rem] md:text-[4rem] font-bold text-center">{{ $project->name }}</h2>
         @if($project->github || $project->link)

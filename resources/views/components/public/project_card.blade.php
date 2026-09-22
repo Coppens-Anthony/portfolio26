@@ -1,7 +1,7 @@
-@props(['project'])
+@props(['project', 'isAdmin' => false])
 
 <li class="relative group">
-    <a href="{{ route('project.show', $project) }}" class="absolute inset-0 w-full h-full z-10 outline-none"></a>
+    <a href="{{ $isAdmin ? route('admin.project.show', $project) : route('project.show', $project) }}" class="absolute inset-0 w-full h-full z-10 outline-none"></a>
     <article
         class="h-full rounded-2xl border-black border overflow-hidden flex flex-col transition-all duration-200 group-hover:-translate-y-1 group-hover:shadow-lg group-focus-within:-translate-y-1 group-focus-within:shadow-lg">
 

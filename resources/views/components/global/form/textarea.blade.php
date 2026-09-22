@@ -9,6 +9,6 @@
         </small>
         @enderror
     </label>
-    <textarea id="{{ $name }}" placeholder="{{ $placeholder }}" class="p-2 resize-none rounded-lg border border-black"
+    <textarea id="{{ $name }}" {{ $attributes }} placeholder="{{ $placeholder }}" class="p-2 resize-none rounded-lg border border-black"
               rows="6">{{@old($name) ?? $value}}</textarea>
 </div>
