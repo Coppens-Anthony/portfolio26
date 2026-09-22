@@ -18,7 +18,12 @@
             </div>
         @endif
     </div>
-    <img src="{{ asset('assets/img/mockup_cv.jpg') }}" alt="" class="w-full aspect-15/9 object-cover rounded-4xl">
+    <img src="{{ Storage::url('photos/originals/' . $project->avatar) }}"
+         srcset="{{ Storage::url('photos/variants/300x100/' . $project->avatar) }} 300w,
+         {{ Storage::url('photos/variants/600x300/' . $project->avatar) }} 600w,
+         {{ Storage::url('photos/variants/900x600/' . $project->avatar) }} 900w,
+         {{ Storage::url('photos/originals/' . $project->avatar) }} 1200w"
+         sizes="(min-width: 1280px) 1280px, 100vw" alt="" class="w-full aspect-15/9 object-cover rounded-4xl">
     <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 mt-16">
         <li class="bg-secondary rounded-2xl p-8 flex flex-col gap-2">
             <p>Client</p>

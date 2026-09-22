@@ -1,25 +1,34 @@
 <?php
 
 use App\Enums\CategoriesEnum;
+use App\Jobs\ProcessUploadedPhoto;
 use App\Models\Competence;
+use App\Models\Photo;
 use App\Models\Project;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 new #[Title('Formulaire projet')]
 class extends Component {
-    public string $name;
+    use WithFileUploads;
+
+    public string $name = '';
     public string $year = '2026';
-    public string $description;
-    public string $about;
-    public string $client;
-    public string $client_about;
-    public string $start_at;
+    public string $description = '';
+    public string $about = '';
+    public string $client = '';
+    public string $client_about = '';
+    public string $start_at = '';
     public ?string $end_at = null;
     public ?string $github = null;
     public ?string $link = null;
-    public ?Project $project;
+    public $avatar = null;
+    public array $photos = [];
+    public $existing_photos = [];
+    public ?Project $project = null;
     public array $selected_competencies = [];
 
     public function mount(?string $model_id = null)
@@ -36,6 +45,7 @@ class extends Component {
             $this->end_at = $this->project->end_at?->format('Y-m-d');
             $this->github = $this->project->github;
             $this->link = $this->project->link;
+            $this->existing_photos = $this->project->photos()->get();
             $this->selected_competencies = $this->project->competences()->pluck('competences.id')->toArray();
         }
     }
@@ -58,8 +68,25 @@ class extends Component {
         return Competence::where('category', CategoriesEnum::TOOL)->get();
     }
 
+    public function removeNewPhoto(int $index)
+    {
+        unset($this->photos[$index]);
+        $this->photos = array_values($this->photos);
+    }
+
+    public function removeExistingPhoto(int $photoId)
+    {
+        $photo = Photo::find($photoId);
+        if ($photo && $this->project && $photo->project_id === $this->project->id) {
+            $photo->delete();
+            $this->existing_photos = $this->project->photos()->get();
+        }
+    }
+
     public function store()
     {
+        $isEditing = isset($this->project) && $this->project->exists;
+
         $validated = $this->validate([
             'name' => 'required|max:255',
             'year' => 'required|int|min:2024|max:' . now()->year,
@@ -71,15 +98,48 @@ class extends Component {
             'end_at' => 'nullable|after_or_equal:start_at',
             'github' => 'nullable|max:255',
             'link' => 'nullable|max:255',
+            'avatar' => ($isEditing ? 'nullable' : 'required') . '|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'photos' => 'nullable|array',
+            'photos.*' => 'mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
-        if (isset($this->project) && $this->project->exists) {
-            $this->project->update($validated);
+        $disk = config('filesystems.default');
+        $projectData = collect($validated)->except(['avatar', 'photos'])->toArray();
+
+        if ($this->avatar) {
+            $avatarFileName = uniqid() . '.' . config('photos.picture_type');
+            $avatarPath = $this->avatar->storeAs(
+                config('photos.original_path'),
+                $avatarFileName,
+                $disk
+            );
+            $projectData['avatar'] = $avatarFileName;
+            ProcessUploadedPhoto::dispatchSync($avatarPath, $avatarFileName);
+        }
+
+        if ($isEditing) {
+            $this->project->update($projectData);
         } else {
-            $this->project = Project::create($validated);
+            $this->project = Project::create($projectData);
         }
 
         $this->project->competences()->sync($this->selected_competencies);
+
+        foreach ($this->photos as $photo) {
+            $newFileName = uniqid() . '.' . config('photos.picture_type');
+            $fullPathToOriginal = $photo->storeAs(
+                config('photos.original_path'),
+                $newFileName,
+                $disk
+            );
+
+            ProcessUploadedPhoto::dispatchSync($fullPathToOriginal, $newFileName);
+
+            Photo::create([
+                'photo' => $newFileName,
+                'project_id' => $this->project->id,
+            ]);
+        }
 
         return redirect(route('admin.project.show', $this->project->id));
     }
@@ -104,7 +164,7 @@ class extends Component {
         <x-global.form.input name="start_at" wire:model="start_at" type="date">
             Date de début
         </x-global.form.input>
-        <x-global.form.input name="end_at" wire:model="end_at" type="date">
+        <x-global.form.input name="end_at" wire:model="end_at" type="date" :isRequired="false">
             Date de fin
         </x-global.form.input>
         <x-global.form.input name="client" wire:model="client" placeholder="Joana-Coiffure">
@@ -113,12 +173,66 @@ class extends Component {
         <x-global.form.input name="client_about" wire:model="client_about" placeholder="Salon de coiffure fictif">
             Information sur le client
         </x-global.form.input>
-        <x-global.form.input name="github" wire:model="github">
+        <x-global.form.input name="github" wire:model="github" :isRequired="false">
             Github
         </x-global.form.input>
-        <x-global.form.input name="link" wire:model="link">
+        <x-global.form.input name="link" wire:model="link" :isRequired="false">
             Lien du site
         </x-global.form.input>
+
+        {{-- Avatar --}}
+        <div class="col-span-2">
+            <p class="mb-2 font-medium">Mockup</p>
+            <div class="flex items-center gap-4">
+                @if($avatar)
+                    <img src="{{ $avatar->temporaryUrl() }}" alt="Mockup" class="w-24 h-24 object-cover rounded">
+                @elseif(isset($this->project) && $this->project->avatar)
+                    <img src="{{ Storage::url(config('photos.original_path') . '/' . $this->project->avatar) }}"
+                         alt="Mockup actuel" class="w-24 h-24 object-cover rounded">
+                @endif
+                <label class="cursor-pointer text-sm text-blue-600 hover:underline">
+                    {{ $avatar || (isset($this->project) && $this->project->avatar) ? 'Changer le mockup' : 'Choisir un mockup' }}
+                    <input type="file" wire:model="avatar" class="hidden">
+                </label>
+            </div>
+            @error('avatar') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+        </div>
+
+        {{-- Gallerie --}}
+        <div class="col-span-2">
+            <p class="mb-2 font-medium">Photos de gallerie</p>
+
+            <div class="grid grid-cols-4 gap-4 mb-3">
+                @foreach($existing_photos as $existingPhoto)
+                    <div class="relative">
+                        <img src="{{ Storage::url(config('photos.original_path') . '/' . $existingPhoto->photo) }}"
+                             alt="Photo du projet" class="w-full h-24 object-cover rounded">
+                        <button type="button" wire:click="removeExistingPhoto({{ $existingPhoto->id }})"
+                                class="absolute top-1 right-1 bg-red-600 text-white rounded-full w-5 h-5 text-xs leading-none">
+                            ✕
+                        </button>
+                    </div>
+                @endforeach
+
+                @foreach($photos as $index => $newPhoto)
+                    <div class="relative">
+                        <img src="{{ $newPhoto->temporaryUrl() }}" alt="Nouvelle photo"
+                             class="w-full h-24 object-cover rounded ring-2 ring-blue-400">
+                        <button type="button" wire:click="removeNewPhoto({{ $index }})"
+                                class="absolute top-1 right-1 bg-red-600 text-white rounded-full w-5 h-5 text-xs leading-none">
+                            ✕
+                        </button>
+                    </div>
+                @endforeach
+
+                <label class="flex items-center justify-center h-24 border-2 border-dashed border-gray-300 rounded cursor-pointer text-gray-400 hover:border-gray-400 text-sm">
+                    + Ajouter
+                    <input type="file" wire:model="photos" multiple class="hidden">
+                </label>
+            </div>
+            @error('photos') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+            @error('photos.*') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+        </div>
 
         <div class="col-span-2">
             <p class="mb-2 font-medium">Compétences</p>

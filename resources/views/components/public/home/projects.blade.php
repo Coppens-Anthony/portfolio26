@@ -9,7 +9,7 @@
         </x-global.link>
     </div>
 
-    <ol class="grid grid-cols-1 md:grid-cols-2 gap-12">
+    <ol class="grid grid-cols-1 lg:grid-cols-2 gap-12">
         @foreach($projects as $project)
             <x-public.project_card :project="$project"/>
         @endforeach

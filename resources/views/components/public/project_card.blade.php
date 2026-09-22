@@ -1,13 +1,20 @@
 @props(['project', 'isAdmin' => false])
 
 <li class="relative group">
-    <a href="{{ $isAdmin ? route('admin.project.show', $project) : route('project.show', $project) }}" class="absolute inset-0 w-full h-full z-10 outline-none"></a>
+    <a href="{{ $isAdmin ? route('admin.project.show', $project) : route('project.show', $project) }}"
+       class="absolute inset-0 w-full h-full z-10 outline-none"></a>
     <article
         class="h-full rounded-2xl border-black border overflow-hidden flex flex-col transition-all duration-200 group-hover:-translate-y-1 group-hover:shadow-lg group-focus-within:-translate-y-1 group-focus-within:shadow-lg">
 
         <div class="overflow-hidden">
-            <img src="{{ asset('assets/img/mockup_cv.jpg') }}" alt=""
-                 class="w-full transition-transform duration-200 group-hover:scale-105 group-focus-within:scale-105">
+            <img src="{{ Storage::url('photos/originals/' . $project->avatar) }}"
+                 srcset="{{ Storage::url('photos/variants/300x100/' . $project->avatar) }} 300w,
+         {{ Storage::url('photos/variants/600x300/' . $project->avatar) }} 600w,
+         {{ Storage::url('photos/variants/900x600/' . $project->avatar) }} 900w,
+         {{ Storage::url('photos/originals/' . $project->avatar) }} 1200w"
+                 sizes="(min-width: 1024px) calc(1280px / 3), (min-width: 768px) 50vw, 100vw"
+                 class="w-full aspect-9/5 object-cover transition-transform duration-200 group-hover:scale-105 group-focus-within:scale-105"
+                 alt="">
         </div>
 
         <div class="p-8 flex flex-col gap-6 flex-1">

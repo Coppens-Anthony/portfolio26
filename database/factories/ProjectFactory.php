@@ -14,6 +14,7 @@ class ProjectFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
+            'avatar' => $this->faker->word(),
             'year' => $this->faker->year(),
             'description' => $this->faker->text(),
             'about' => $this->faker->realText(),
