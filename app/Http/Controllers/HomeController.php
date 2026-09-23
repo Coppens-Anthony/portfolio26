@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Enums\CategoriesEnum;
 use App\Enums\ExperiencesEnum;
+use App\Mails\ContactForm;
 use App\Models\Competence;
 use App\Models\Experience;
 use App\Models\Project;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -26,5 +30,25 @@ class HomeController extends Controller
         });
 
         return view('pages.public.home', compact('front_competencies', 'back_competencies', 'tool_competencies', 'projects', 'professionals', 'scholars'));
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|max:255',
+            'message' => 'required|max:5000',
+        ]);
+
+        try {
+            Mail::send(new ContactForm($validated));
+        } catch (Exception $exception) {
+            report($exception);
+
+            return redirect(route('home').'#contact')->with('error', true);
+        }
+
+        return redirect(route('home').'#contact')->with('success', true);
     }
 }

@@ -4,11 +4,11 @@
     <label for="{{ $name }}">
         {{$slot}} <span class="text-error" aria-hidden="true">{{$isRequired ? '*' : ''}}</span>
         @error($name)
-        <small class="text-error">
+        <small class="text-error text-[.75rem] block">
             {{ $message }}
         </small>
         @enderror
     </label>
-    <input type="{{ $type }}" {{ $attributes }} id="{{ $name }}" name="{{ $name }}" placeholder="{{ $placeholder }}" value="{{@old($name) ?? $value}}"
+    <input {{ $isRequired ? 'required' : '' }} type="{{ $type }}" {{ $attributes }} id="{{ $name }}" name="{{ $name }}" placeholder="{{ $placeholder }}" value="{{@old($name) ?? $value}}"
            class="p-2 rounded-lg border border-black">
 </div>
