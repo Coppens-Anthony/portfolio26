@@ -5,7 +5,7 @@
         <x-global.link :route="route('projects')" :backArrow="true">Retour aux projets</x-global.link>
     @endif
     <div class="mx-auto w-fit my-16">
-        <h2 class="text-[2rem] sm:text-[2.75rem] md:text-[4rem] font-bold text-center">{{ $project->name }}</h2>
+        <h2 class="font-title text-[2rem] sm:text-[2.75rem] md:text-[4rem] font-bold text-center">{{ $project->name }}</h2>
         @if($project->github || $project->link)
             <div class="flex gap-8 mt-4 w-fit mx-auto">
                 @if($project->github)

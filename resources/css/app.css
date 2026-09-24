@@ -5,6 +5,7 @@
 
 @theme {
     --font-sans: 'Poppins', 'Nunito', 'Helvetica', sans-serif;
+    --font-title: 'Fraunces', Georgia, 'Times New Roman', serif;
 
     --color-black: #000;
     --color-white: #fff;
