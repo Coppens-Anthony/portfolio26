@@ -54,6 +54,13 @@
                         Parcours
                     </x-global.link>
                 </li>
+                <li>
+                    <x-global.link
+                        :route="route('profile')"
+                        :isActive="request()->routeIs('profile')">
+                        Profil
+                    </x-global.link>
+                </li>
             </ul>
         </nav>
     </div>

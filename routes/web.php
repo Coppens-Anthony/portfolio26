@@ -20,6 +20,9 @@ Route::prefix('admin')->group(function () {
     Route::livewire('/dashboard', 'pages::admin.⚡dashboard')
         ->name('dashboard')->middleware('auth');
 
+    Route::livewire('/profile', 'pages::admin.⚡profile')
+        ->name('profile')->middleware('auth');
+
     Route::livewire('/competencies', 'pages::admin.competencies.⚡index')
         ->name('competencies.index')->middleware('auth');
 

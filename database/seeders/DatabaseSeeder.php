@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'email' => 'john@doe.com',
-            'password' => bcrypt('password'),
+            'email' => 'anthonycoppens04@gmail.com',
+            'password' => config('app.password'),
         ]);
 
         $competencies = [
