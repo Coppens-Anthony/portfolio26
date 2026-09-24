@@ -27,7 +27,7 @@
                 {{ $project->description }}
             </p>
 
-            <ul class="flex gap-2">
+            <ul class="flex flex-wrap gap-2">
                 @foreach ($project->competences as $competence)
                     <li class="py-2 px-4 bg-secondary rounded-lg">{{ $competence->name }}</li>
                 @endforeach
