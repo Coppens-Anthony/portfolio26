@@ -6,7 +6,7 @@
         @foreach($experiences as $experience)
             <li class="pb-6 border-b border-black">
                 <article>
-                    <div class="flex justify-between mb-2">
+                    <div class="flex flex-col gap-4 md:flex-row justify-between mb-2">
                         <h4>{{ $experience->title }}</h4>
                         <p>{{ $experience->date }}</p>
                     </div>
